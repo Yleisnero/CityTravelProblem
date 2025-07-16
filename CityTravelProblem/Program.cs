@@ -54,15 +54,11 @@ foreach (var edge in edges)
 
 city.DisplayCity();
 
-Console.WriteLine("Shortest Path from 2 to 4: " + string.Join("-", city.ShortestPath(2, 4)));
-Console.WriteLine("Neighbors of 1: " + string.Join(",", city.GetNeighbors(1)));
-Console.WriteLine("Everybody now goes to place 1 \n");
-
-// Everybody goes to place 1
+Console.WriteLine("\nEverybody now goes to place 1");
 var target = 1;
 var edgeLoads = city.EdgeLoads(target);
 
-Console.WriteLine($"\nEdge utilisation if everyone goes to {target}:");
+Console.WriteLine($"Edge utilisation if everyone goes to {target}:");
 foreach (var kvp in edgeLoads.OrderBy(k => k.Key))
 {
     Console.WriteLine($"{kvp.Key}: {kvp.Value} people");

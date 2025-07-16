@@ -37,59 +37,6 @@ public class CityGraph
         }
     }
 
-    public int[] ShortestPath(int start, int end)
-    {
-        var visited = new bool[_numOfCities];
-        var prev = new int[_numOfCities];
-        for (var k = 0; k < _numOfCities; k++) prev[k] = -1;
-
-        var queue = new Queue<int>();
-        queue.Enqueue(start);
-        visited[start] = true;
-
-        while (queue.Count > 0)
-        {
-            var current = queue.Dequeue();
-            if (current == end) break;
-            for (var neighbor = 0; neighbor < _numOfCities; neighbor++)
-            {
-                if (_cityMatrix[current, neighbor] != 0 && !visited[neighbor])
-                {
-                    queue.Enqueue(neighbor);
-                    visited[neighbor] = true;
-                    prev[neighbor] = current;
-                }
-            }
-        }
-
-        // Rebuild path from prev array
-        var path = new List<int>();
-        for (var at = end; at != -1; at = prev[at])
-            path.Add(at);
-        path.Reverse();
-
-        // If start of path is not i, no path exists
-        return path[0] != start ? [] : path.ToArray();
-    }
-
-    public int[] GetNeighbors(int place)
-    {
-        var neighbors = new List<int>();
-        for (var i = 0; i < _numOfCities; i++)
-        {
-            if (i != place) continue;
-            for (var j = 0; j < _numOfCities; j++)
-            {
-                if (_cityMatrix[i, j] == 1)
-                {
-                    neighbors.Add(j);
-                }
-            }
-        }
-
-        return neighbors.ToArray();
-    }
-
     public Dictionary<(int, int), long> EdgeLoads(int destination)
     {
         var loads = new Dictionary<(int, int), long>();
