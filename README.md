@@ -16,8 +16,6 @@ The algorithm uses post-order depth-first search (DFS) to compute subtree sums i
 
 - Root the tree at the destination node
 
-  -  Post-order DFS to compute subtree sums
-
-    Extract edge loads during recursion return
-
-    Store results in a dictionary
+-  Post-order DFS to compute subtree sums
+- Extract edge loads during recursion return
+- Store results in a dictionary
